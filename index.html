@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Special Someone</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: fadeDown 1s ease-out;
+    }
+    
+    h1 {
+      color: #ff4b8d;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .subtitle {
+      color: #555;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+    
+    .message {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: scaleIn 1s ease-out 0.5s both;
+    }
+    
+    .message::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite 2s;
+    }
+    
+    .message p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 0.8rem;
+    }
+    
+    .heart {
+      color: #ff4b8d;
+      font-size: 1.2rem;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+    
+    .photo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      /* Changed aspect ratio to match portrait orientation */
+      aspect-ratio: 9/16;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out forwards;
+    }
+    
+    .photo-item:nth-child(1) { animation-delay: 0.2s; }
+    .photo-item:nth-child(2) { animation-delay: 0.4s; }
+    .photo-item:nth-child(3) { animation-delay: 0.6s; }
+    .photo-item:nth-child(4) { animation-delay: 0.8s; }
+    .photo-item:nth-child(5) { animation-delay: 1.0s; }
+    .photo-item:nth-child(6) { animation-delay: 1.2s; }
+    .photo-item:nth-child(7) { animation-delay: 1.4s; }
+    .photo-item:nth-child(8) { animation-delay: 1.6s; }
+    .photo-item:nth-child(9) { animation-delay: 1.8s; }
+    
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .photo-item:active img {
+      transform: scale(1.05);
+    }
+    
+    .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 0.8rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .photo-item:active .caption {
+      transform: translateY(0);
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      color: #666;
+      animation: fadeIn 1s ease-out 2s both;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes shine {
+      0% {
+        left: -100%;
+        transition-property: left;
+      }
+      20% {
+        left: 100%;
+        transition-property: left;
+      }
+      100% {
+        left: 100%;
+        transition-property: left;
+      }
+    }
+    
+    /* Date counter display */
+    .date-counter {
+      background: rgba(255, 75, 141, 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      animation: pulse2 2s infinite alternate;
+    }
+    
+    .date-counter h3 {
+      margin-bottom: 0.5rem;
+      color: #ff4b8d;
+    }
+    
+    .counter {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff4b8d;
+    }
+    
+    @keyframes pulse2 {
+      0% { box-shadow: 0 0 5px rgba(255, 75, 141, 0.3); }
+      100% { box-shadow: 0 0 20px rgba(255, 75, 141, 0.6); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>For My Amazing Girlfriend</h1>
+      <p class="subtitle">My Loved One</p>
+    </header>
+    
+    <div class="date-counter">
+      <h3>We've been together for</h3>
+      <div class="counter" id="days-counter">0</div>
+      <div>special days</div>
+    </div>
+    
+    <div class="message">
+      <p>To my wonderful girlfriend,</p>
+      <p>Every moment with you feels like magic. These photos are just a small glimpse of the beautiful you.</p>
+      <p>Babe I really love you really and I can't imagine myself without you.</p>
+      <p>Lekin tumne jo kiya, it really hurted me a lot and I have been thinking about this from the last night</p>
+      <p>I feel like I have been cheated on 😊😊.</p>
+      <p>I don't know what to do or how will I manage this maybe with time, this will fade away.</p>
+      <p>I have forgiven you but I think I would not be able to trust you until this fades away.</p>
+      <p>Currently the only thing I want is to meet you.</p>
+      <p>And I will always Love you ❤️❤️❤️❤️❤️.</p>
+      <p>You mean everything to me <span class="heart">❤️</span></p>
+
+      <br>
+      <p>Note ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️: Also Click on the photos below to see the caption</p>
+    </div>
+    
+    <div class="photo-grid">
+        <div class="photo-item">
+          <img src="img/1745161606002.jpg" alt="Photo1">
+          <div class="caption">My Cutie 💕💕</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606011.jpg" alt="Photo2">
+          <div class="caption">Kuchu Puchu 😍</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606021.jpg" alt="Photo3">
+          <div class="caption">Meri Bandariya ❤️❤️</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606030.jpg" alt="Photo4">
+          <div class="caption">Meri angry young baby 😘😘</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606042.jpg" alt="Photo5">
+          <div class="caption">Meri sundar Kanya 🤩🤩</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606051.jpg" alt="Photo6">
+          <div class="caption">Meri Kaleshi Aurat 😒❤️</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606062.jpg" alt="Photo7">
+          <div class="caption">My Queen 💕❤️</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606072.jpg" alt="Photo8">
+          <div class="caption">My Hottie and sexy lady 🥵🥵😈</div>
+        </div>
+        
+        <div class="photo-item">
+          <img src="img/1745161606081.jpg" alt="Photo9">
+          <div class="caption">Meri Wifey 💕❤️😘</div>
+        </div>
+      </div>
+    
+    <footer>
+      <p>Made with love, just for you</p>
+    </footer>
+  </div>
+
+  <script>
+    // Calculate days since you've been together
+    // Change this date to when you started dating
+    const startDate = new Date('2024-12-13'); // Example date - CHANGE THIS!
+    const today = new Date();
+    const timeDiff = Math.abs(today.getTime() - startDate.getTime());
+    const daysTogether = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    
+    // Animated counter
+    const counter = document.getElementById('days-counter');
+    const duration = 2000; // 2 seconds animation
+    const steps = 50;
+    const increment = daysTogether / steps;
+    let current = 0;
+    let stepCount = 0;
+    
+    const timer = setInterval(() => {
+      stepCount++;
+      current += increment;
+      
+      if (stepCount >= steps) {
+        current = daysTogether;
+        clearInterval(timer);
+      }
+      
+      counter.textContent = Math.floor(current);
+    }, duration / steps);
+    
+    // Touch interactions for mobile
+    const photoItems = document.querySelectorAll('.photo-item');
+    photoItems.forEach(item => {
+      item.addEventListener('touchstart', () => {
+        const caption = item.querySelector('.caption');
+        caption.style.transform = 'translateY(0)';
+      });
+      
+      item.addEventListener('touchend', () => {
+        setTimeout(() => {
+          const caption = item.querySelector('.caption');
+          caption.style.transform = 'translateY(100%)';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
