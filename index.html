@@ -10,6 +10,43 @@
             padding: 0;
             box-sizing: border-box;
         }
+        .collage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.photo-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.photo-frame {
+    overflow: hidden;
+    flex: 1;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Optional: size classes for consistent layout */
+.photo-large {
+    height: 300px;
+}
+
+.photo-medium {
+    height: 200px;
+}
+
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -203,26 +240,36 @@
     <div class="collage-container">
         <!-- Top photo - large single photo -->
         <div class="photo-frame">
-            <div class="photo photo-large">Photo 1</div>
+            <div class="photo photo-large" id="photo1">
+                <img src="img/1745161606030.jpg" alt="Special moment 1" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
+            </div>
         </div>
         
         <!-- Middle row - two photos -->
         <div class="photo-row">
             <div class="photo-frame">
-                <div class="photo photo-medium">Photo 2</div>
+                <div class="photo photo-medium" id="photo2">
+                    <img src="img/1745161606062.jpg" alt="Special moment 2" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
+                </div>
             </div>
             <div class="photo-frame">
-                <div class="photo photo-medium">Photo 3</div>
+                <div class="photo photo-medium" id="photo3">
+                    <img src="img/1745161606081.jpg" alt="Special moment 3" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
+                </div>
             </div>
         </div>
         
         <!-- Bottom row - two photos -->
         <div class="photo-row">
             <div class="photo-frame">
-                <div class="photo photo-medium">Photo 4</div>
+                <div class="photo photo-medium" id="photo4">
+                    <img src="img/1745161606002.jpg" alt="Special moment 4" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
+                </div>
             </div>
             <div class="photo-frame">
-                <div class="photo photo-medium">Photo 5</div>
+                <div class="photo photo-medium" id="photo5">
+                    <img src="img/1745161606011.jpg" alt="Special moment 5" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
+                </div>
             </div>
         </div>
     </div>
@@ -325,7 +372,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             createHearts();
             createSparkles();
-            setupImagePlaceholders();
+            // setupImagePlaceholders();
         });
     </script>
 </body>
