@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special Someone</title>
+    <title>For Someone Special</title>
     <style>
         * {
             margin: 0;
@@ -12,257 +12,321 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9e5ee 0%, #d8b5ce 100%);
             min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .title {
+            color: #d3559f;
+            font-size: 28px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: normal;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            animation: fadeIn 2s ease-out, float 6s ease-in-out infinite;
+        }
+        
+        .collage-container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .photo-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+        
+        .photo-frame {
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
         
-        .card {
-            width: 90%;
-            max-width: 350px;
-            background-color: white;
+        .photo-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,158,192,0) 0%, rgba(255,158,192,0.2) 50%, rgba(255,158,192,0) 100%);
+            opacity: 0;
+            animation: shimmer 3s infinite;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05);
+        }
+        
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        
+        .photo-large {
+            width: 250px;
+            height: 250px;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .photo-medium {
+            width: 120px;
+            height: 150px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .message-container {
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            padding: 30px 20px;
+            padding: 25px;
+            margin-top: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             position: relative;
-            z-index: 10;
-            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .message-line {
+            color: #d3559f;
+            margin: 15px 0;
+            font-size: 18px;
+            opacity: 0;
+            transform: translateY(20px);
         }
         
         .heart {
             position: absolute;
-            pointer-events: none;
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
-        }
-        
-        h1 {
-            color: #ff6b6b;
-            margin-bottom: 20px;
+            fill: #e7629a;
+            opacity: 0.6;
             animation: pulse 2s infinite;
         }
         
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
-        p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        
-        .heart-container {
-            margin: 30px 0;
-            position: relative;
-            height: 100px;
-        }
-        
-        .big-heart {
-            color: #ff6b6b;
-            font-size: 80px;
-            animation: beat 1.2s ease infinite;
-            display: inline-block;
-        }
-        
-        @keyframes beat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.1);
-            }
-            40% {
-                transform: scale(1);
-            }
-            60% {
-                transform: scale(1.1);
-            }
-        }
-        
-        .flowers {
+        .sparkle {
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 24px;
-            opacity: 0;
-            animation: appear 3s forwards 1s;
-        }
-        
-        @keyframes appear {
-            to {
-                opacity: 1;
-                transform: translateY(-10px);
-            }
-        }
-        
-        .button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            transition: all 0.3s ease;
-            animation: bounce 2s infinite 3s;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        
-        .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 20px rgba(255, 107, 107, 0.5);
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #ff6b6b;
+            width: 6px;
+            height: 6px;
+            background-color: #ffb6d9;
+            border-radius: 50%;
             opacity: 0;
         }
         
-        @keyframes fall {
-            0% {
-                opacity: 1;
-                top: -10%;
-                transform: translateX(0) rotate(0deg);
-            }
-            100% {
-                opacity: 0.3;
-                top: 100%;
-                transform: translateX(100px) rotate(360deg);
-            }
-        }
-        
-        .message {
-            margin-top: 20px;
-            padding: 15px;
-            border: 2px dashed #ff6b6b;
-            border-radius: 10px;
-            opacity: 0;
-            animation: fadeIn 1s forwards 2s;
-        }
-        
+        /* Animations */
         @keyframes fadeIn {
-            to {
-                opacity: 1;
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes shimmer {
+            0% { opacity: 0; transform: translateX(-100%); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(100%); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Message animation delays */
+        #line1 { animation: fadeIn 1s ease-out 0.5s forwards; }
+        #line2 { animation: fadeIn 1s ease-out 1.5s forwards; }
+        #line3 { animation: fadeIn 1s ease-out 2.5s forwards; }
+        #line4 { animation: fadeIn 1s ease-out 3.5s forwards; }
+        #line5 { animation: fadeIn 1s ease-out 4.5s forwards; }
+        
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .photo-large {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .photo-medium {
+                width: 100px;
+                height: 130px;
+            }
+            
+            .message-container {
+                padding: 20px 15px;
+            }
+            
+            .message-line {
+                font-size: 16px;
+                margin: 12px 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h3>For My Partner ❤️, Meri ram dulari ❤️, Devi ji ❤️</h3>
-        
-        <div class="heart-container">
-            <div class="big-heart">❤️</div>
-            <div class="flowers">🌷 🌹 🌷</div>
+    <h1 class="title">Forever Yours</h1>
+    
+    <div class="collage-container">
+        <!-- Top photo - large single photo -->
+        <div class="photo-frame">
+            <div class="photo photo-large">Photo 1</div>
         </div>
         
-        <p>I know things have been tough lately, and I'm sorry for any part I've played in adding to your stress. You mean the world to me, and seeing you smile makes my day brighter.</p>
-        
-        <div class="message">
-            <p>Remember that I'm always here for you. Your strength inspires me every day, and I believe in you completely my lady.</p>
+        <!-- Middle row - two photos -->
+        <div class="photo-row">
+            <div class="photo-frame">
+                <div class="photo photo-medium">Photo 2</div>
+            </div>
+            <div class="photo-frame">
+                <div class="photo photo-medium">Photo 3</div>
+            </div>
         </div>
         
-        <p>I promise to be more understanding, to listen better, and to be the support you need right now. Jo bhi baat hai kr skti ho tumhari saari baate sununga as friend, advice dunga as a father and saath rahunga hamesha as a life partner.</p>
-        
-        <a href="#" class="button" id="forgiveButton">Forgive Me?</a>
+        <!-- Bottom row - two photos -->
+        <div class="photo-row">
+            <div class="photo-frame">
+                <div class="photo photo-medium">Photo 4</div>
+            </div>
+            <div class="photo-frame">
+                <div class="photo photo-medium">Photo 5</div>
+            </div>
+        </div>
     </div>
     
+    <div class="message-container">
+        <p class="message-line" id="line1">Your beauty captivates me every day.</p>
+        <p class="message-line" id="line2">You are so important to me,</p>
+        <p class="message-line" id="line3">my world is brighter with you in it.</p>
+        <p class="message-line" id="line4">I am here for you always -</p>
+        <p class="message-line" id="line5">in every moment, through every season.</p>
+    </div>
+    
+    <!-- Decorative hearts and sparkles -->
     <script>
-        // Create floating hearts in the background
+        // Add hearts
         function createHearts() {
-            const body = document.querySelector('body');
-            const heartSymbols = ['❤️', '💗', '💕', '💖', '💘'];
+            const numHearts = 5;
+            const body = document.body;
             
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = Math.random() * 100 + 'vh';
-                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                heart.style.animationDelay = (Math.random() * 5) + 's';
-                heart.style.opacity = Math.random() * 0.5 + 0.3;
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                heart.classList.add("heart");
+                heart.setAttribute("viewBox", "0 0 24 24");
+                heart.setAttribute("width", "24");
+                heart.setAttribute("height", "24");
+                heart.style.position = "absolute";
+                
+                // Random position
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = 16 + Math.random() * 20;
+                heart.setAttribute("width", size.toString());
+                heart.setAttribute("height", size.toString());
+                
+                // Random animation delay
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
+                
+                heart.appendChild(path);
                 body.appendChild(heart);
             }
         }
         
-        // Create confetti effect for the button
-        function createConfetti() {
-            const body = document.querySelector('body');
-            const colors = ['#ff6b6b', '#ffb6b6', '#ffd6d6', '#ff9e9e', '#ffcece'];
+        // Add sparkles
+        function createSparkles() {
+            const numSparkles = 15;
+            const body = document.body;
             
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.width = (Math.random() * 8 + 5) + 'px';
-                    confetti.style.height = (Math.random() * 8 + 5) + 'px';
-                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                    confetti.style.animation = 'fall ' + (Math.random() * 3 + 2) + 's linear forwards';
-                    
-                    body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 5000);
-                }, i * 100);
+            for (let i = 0; i < numSparkles; i++) {
+                const sparkle = document.createElement("div");
+                sparkle.classList.add("sparkle");
+                
+                // Random position
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = 3 + Math.random() * 3;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                // Twinkle animation
+                sparkle.style.animation = `twinkle ${1 + Math.random() * 3}s infinite ${Math.random() * 3}s`;
+                
+                body.appendChild(sparkle);
             }
         }
         
-        // Button effect
-        document.getElementById('forgiveButton').addEventListener('click', function(e) {
-            e.preventDefault();
-            createConfetti();
-            this.textContent = "Thank You! 💕";
-        });
+        // Replace placeholder text with actual image elements
+        function setupImagePlaceholders() {
+            const photos = document.querySelectorAll('.photo');
+            photos.forEach((photo, index) => {
+                // This would be replaced with actual images in a real implementation
+                // For now, just improving the placeholders
+                photo.textContent = '';
+                photo.style.backgroundColor = '#f0c4d9';
+                
+                const placeholderText = document.createElement('span');
+                placeholderText.textContent = `Photo ${index + 1}`;
+                placeholderText.style.color = '#888';
+                placeholderText.style.fontSize = '14px';
+                photo.appendChild(placeholderText);
+                
+                // To use real images, you would replace this with:
+                // const img = document.createElement('img');
+                // img.src = 'path/to/your/image.jpg';
+                // img.alt = `Photo ${index + 1}`;
+                // img.style.width = '100%';
+                // img.style.height = '100%';
+                // img.style.objectFit = 'cover';
+                // photo.appendChild(img);
+            });
+        }
         
-        // Initialize
-        window.onload = function() {
+        // Initialize everything when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
             createHearts();
-        };
+            createSparkles();
+            setupImagePlaceholders();
+        });
     </script>
 </body>
 </html>
