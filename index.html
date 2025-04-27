@@ -3,380 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Someone Special</title>
+    <title>You Are Loved</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .collage-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.photo-row {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.photo-frame {
-    overflow: hidden;
-    flex: 1;
-}
-
-.photo img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-/* Optional: size classes for consistent layout */
-.photo-large {
-    height: 300px;
-}
-
-.photo-medium {
-    height: 200px;
-}
-
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f9e5ee 0%, #d8b5ce 100%);
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
+            text-align: center;
             overflow-x: hidden;
         }
         
-        .title {
-            color: #d3559f;
-            font-size: 28px;
-            margin: 20px 0;
-            text-align: center;
-            font-weight: normal;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            animation: fadeIn 2s ease-out, float 6s ease-in-out infinite;
-        }
-        
-        .collage-container {
+        .container {
+            max-width: 600px;
             width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            position: relative;
-            z-index: 1;
+            padding: 20px;
         }
         
-        .photo-row {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 15px;
-        }
-        
-        .photo-frame {
-            background-color: white;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .photo-frame::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,158,192,0) 0%, rgba(255,158,192,0.2) 50%, rgba(255,158,192,0) 100%);
-            opacity: 0;
-            animation: shimmer 3s infinite;
-        }
-        
-        .photo-frame:hover {
-            transform: scale(1.05);
-        }
-        
-        .photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-            background-color: #f8f8f8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-        }
-        
-        .photo-large {
-            width: 250px;
-            height: 250px;
-            animation: float 5s ease-in-out infinite;
-        }
-        
-        .photo-medium {
-            width: 120px;
-            height: 150px;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .message-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 20px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .message-line {
-            color: #d3559f;
-            margin: 15px 0;
-            font-size: 18px;
-            opacity: 0;
-            transform: translateY(20px);
+        h1 {
+            color: #FF6B6B;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            animation: fadeIn 2s ease;
         }
         
         .heart {
-            position: absolute;
-            fill: #e7629a;
-            opacity: 0.6;
-            animation: pulse 2s infinite;
+            font-size: 60px;
+            color: #FF6B6B;
+            animation: pulse 1.5s infinite;
+            margin: 20px 0;
         }
         
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background-color: #ffb6d9;
-            border-radius: 50%;
+        .message {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            animation: slideIn 1s ease;
+            line-height: 1.6;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+        }
+        
+        .affirmation-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transform: translateY(50px);
             opacity: 0;
+            animation: floatUp 0.8s forwards;
+            animation-delay: calc(var(--i) * 0.2s);
         }
         
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .affirmation-card h3 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .butterfly {
+            position: absolute;
+            font-size: 20px;
+            animation: flyAround 20s infinite linear;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .butterfly:nth-child(1) {
+            animation-duration: 25s;
+            animation-delay: 2s;
+            left: 10%;
+        }
+        
+        .butterfly:nth-child(2) {
+            animation-duration: 30s;
+            animation-delay: 5s;
+            left: 50%;
+        }
+        
+        .butterfly:nth-child(3) {
+            animation-duration: 22s;
+            animation-delay: 0s;
+            left: 80%;
+        }
+        
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            width: 100%;
+            text-align: center;
         }
         
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
-        @keyframes shimmer {
-            0% { opacity: 0; transform: translateX(-100%); }
-            50% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(100%); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
         
-        /* Message animation delays */
-        #line1 { animation: fadeIn 1s ease-out 0.5s forwards; }
-        #line2 { animation: fadeIn 1s ease-out 1.5s forwards; }
-        #line3 { animation: fadeIn 1s ease-out 2.5s forwards; }
-        #line4 { animation: fadeIn 1s ease-out 3.5s forwards; }
-        #line5 { animation: fadeIn 1s ease-out 4.5s forwards; }
+        @keyframes floatUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
         
-        /* Responsive design */
-        @media (max-width: 480px) {
-            .photo-large {
-                width: 200px;
-                height: 200px;
+        @keyframes flyAround {
+            0% {
+                top: 100%;
+                transform: rotate(0deg);
             }
-            
-            .photo-medium {
-                width: 100px;
-                height: 130px;
+            25% {
+                top: 75%;
+                left: 50%;
+                transform: rotate(90deg);
             }
-            
-            .message-container {
-                padding: 20px 15px;
+            50% {
+                top: 50%;
+                left: 20%;
+                transform: rotate(180deg);
             }
-            
-            .message-line {
-                font-size: 16px;
-                margin: 12px 0;
+            75% {
+                top: 25%;
+                left: 80%;
+                transform: rotate(270deg);
             }
+            100% {
+                top: 0%;
+                left: 10%;
+                transform: rotate(360deg);
+            }
+        }
+        
+        .breathe-button {
+            background-color: #90CDF4;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .breathe-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #90CDF4;
+            }
+            to {
+                box-shadow: 0 0 20px #90CDF4;
+            }
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            animation: fadeIn 3s ease;
         }
     </style>
 </head>
 <body>
-    <h1 class="title">Forever Yours</h1>
+    <div class="butterfly">🦋</div>
+    <div class="butterfly">🦋</div>
+    <div class="butterfly">🦋</div>
     
-    <div class="collage-container">
-        <!-- Top photo - large single photo -->
-        <div class="photo-frame">
-            <div class="photo photo-large" id="photo1">
-                <img src="img/1745161606030.jpg" alt="Special moment 1" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
-            </div>
+    <div class="container">
+        <h1>You Are Stronger Than You Know</h1>
+        
+        <div class="heart">❤️</div>
+        
+        <div class="message">
+            <p>My dearest friend,</p>
+            
+            <p>I know your heart is hurting right now. Breakups leave us feeling hollow, like a piece of ourselves has been taken away. But I want you to know something important: you are complete on your own. You always have been.</p>
+            
+            <p>This pain you're feeling? It's real and valid, but it's also temporary. Each day that passes, even when it doesn't feel like it, you're healing. Your worth was never defined by this relationship, and your story doesn't end here.</p>
+            
+            <p>Take all the time you need to grieve what was lost, but please remember to be gentle with yourself through this process. You deserve kindness, especially from your own heart.</p>
+            
+            <p>I believe in your strength and resilience. When you're ready, the world is waiting for your beautiful light to shine again, brighter than before.</p>
+            
+            <p>Until then, I'm here. We all are. You are so deeply loved.</p>
         </div>
         
-        <!-- Middle row - two photos -->
-        <div class="photo-row">
-            <div class="photo-frame">
-                <div class="photo photo-medium" id="photo2">
-                    <img src="img/1745161606062.jpg" alt="Special moment 2" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
-                </div>
-            </div>
-            <div class="photo-frame">
-                <div class="photo photo-medium" id="photo3">
-                    <img src="img/1745161606081.jpg" alt="Special moment 3" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
-                </div>
-            </div>
+        <div class="quote">"Sometimes good things fall apart so better things can fall together." — Marilyn Monroe</div>
+        
+        <button class="breathe-button" id="breatheBtn">Take a deep breath</button>
+        
+        <div class="affirmation-card" style="--i: 1">
+            <h3>Remember</h3>
+            <p>This pain is temporary. Your strength is permanent.</p>
         </div>
         
-        <!-- Bottom row - two photos -->
-        <div class="photo-row">
-            <div class="photo-frame">
-                <div class="photo photo-medium" id="photo4">
-                    <img src="img/1745161606002.jpg" alt="Special moment 4" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
-                </div>
-            </div>
-            <div class="photo-frame">
-                <div class="photo photo-medium" id="photo5">
-                    <img src="img/1745161606011.jpg" alt="Special moment 5" onerror="this.src='/api/placeholder/400/400';this.onerror=null;">
-                </div>
-            </div>
+        <div class="affirmation-card" style="--i: 2">
+            <h3>You Are Worthy</h3>
+            <p>Of love, of happiness, of peace, exactly as you are right now.</p>
+        </div>
+        
+        <div class="affirmation-card" style="--i: 3">
+            <h3>Growth</h3>
+            <p>Every ending creates space for a beautiful new beginning.</p>
+        </div>
+        
+        <div class="affirmation-card" style="--i: 4">
+            <h3>Your Heart</h3>
+            <p>It's okay to miss them. It's also okay to heal and move forward.</p>
+        </div>
+        
+        <div class="affirmation-card" style="--i: 5">
+            <h3>Promise</h3>
+            <p>One day you'll look back and understand how much stronger this made you.</p>
         </div>
     </div>
     
-    <div class="message-container">
-        <p class="message-line" id="line1">Your beauty captivates me every day.</p>
-        <p class="message-line" id="line2">You are so important to me,</p>
-        <p class="message-line" id="line3">my world is brighter with you in it.</p>
-        <p class="message-line" id="line4">I am here for you always -</p>
-        <p class="message-line" id="line5">in every moment, through every season.</p>
-        <p class="message-line" id="line5">I want to see you smile everyday, And will do anything for it my queen.</p>
-        <p class="message-line" id="line5">Meri Bubu Kuchu puchu meri, my wifey.</p>
-        <p class="message-line" id="line5">I love you more than anything ❤️❤️❤️❤️❤️❤️.</p>
-        
-    </div>
-    
-    <!-- Decorative hearts and sparkles -->
+    <footer>
+        Created with love, just for you. You are never alone on this journey. ✨
+    </footer>
+
     <script>
-        // Add hearts
-        function createHearts() {
-            const numHearts = 5;
-            const body = document.body;
+        document.addEventListener('DOMContentLoaded', function() {
+            const breatheBtn = document.getElementById('breatheBtn');
             
-            for (let i = 0; i < numHearts; i++) {
-                const heart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                heart.classList.add("heart");
-                heart.setAttribute("viewBox", "0 0 24 24");
-                heart.setAttribute("width", "24");
-                heart.setAttribute("height", "24");
-                heart.style.position = "absolute";
+            breatheBtn.addEventListener('click', function() {
+                this.textContent = "Breathe in...";
                 
-                // Random position
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.top = `${Math.random() * 100}%`;
-                
-                // Random size
-                const size = 16 + Math.random() * 20;
-                heart.setAttribute("width", size.toString());
-                heart.setAttribute("height", size.toString());
-                
-                // Random animation delay
-                heart.style.animationDelay = `${Math.random() * 2}s`;
-                
-                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
-                
-                heart.appendChild(path);
-                body.appendChild(heart);
-            }
-        }
-        
-        // Add sparkles
-        function createSparkles() {
-            const numSparkles = 15;
-            const body = document.body;
-            
-            for (let i = 0; i < numSparkles; i++) {
-                const sparkle = document.createElement("div");
-                sparkle.classList.add("sparkle");
-                
-                // Random position
-                sparkle.style.left = `${Math.random() * 100}%`;
-                sparkle.style.top = `${Math.random() * 100}%`;
-                
-                // Random size
-                const size = 3 + Math.random() * 3;
-                sparkle.style.width = `${size}px`;
-                sparkle.style.height = `${size}px`;
-                
-                // Twinkle animation
-                sparkle.style.animation = `twinkle ${1 + Math.random() * 3}s infinite ${Math.random() * 3}s`;
-                
-                body.appendChild(sparkle);
-            }
-        }
-        
-        // Replace placeholder text with actual image elements
-        function setupImagePlaceholders() {
-            const photos = document.querySelectorAll('.photo');
-            photos.forEach((photo, index) => {
-                // This would be replaced with actual images in a real implementation
-                // For now, just improving the placeholders
-                photo.textContent = '';
-                photo.style.backgroundColor = '#f0c4d9';
-                
-                const placeholderText = document.createElement('span');
-                placeholderText.textContent = `Photo ${index + 1}`;
-                placeholderText.style.color = '#888';
-                placeholderText.style.fontSize = '14px';
-                photo.appendChild(placeholderText);
-                
-                // To use real images, you would replace this with:
-                // const img = document.createElement('img');
-                // img.src = 'path/to/your/image.jpg';
-                // img.alt = `Photo ${index + 1}`;
-                // img.style.width = '100%';
-                // img.style.height = '100%';
-                // img.style.objectFit = 'cover';
-                // photo.appendChild(img);
+                setTimeout(() => {
+                    this.textContent = "Hold...";
+                    
+                    setTimeout(() => {
+                        this.textContent = "Breathe out...";
+                        
+                        setTimeout(() => {
+                            this.textContent = "Take a deep breath";
+                        }, 4000);
+                    }, 4000);
+                }, 4000);
             });
-        }
-        
-        // Initialize everything when the page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            createHearts();
-            createSparkles();
-            // setupImagePlaceholders();
+            
+            // Animation for cards as they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.affirmation-card').forEach(card => {
+                observer.observe(card);
+            });
         });
     </script>
 </body>
