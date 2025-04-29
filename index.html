@@ -171,10 +171,11 @@
         #song-title {
             font-size: 14px;
             font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
+            color: white;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 5px;
+            padding: 0 5px;
         }
 
         .player-controls {
@@ -370,6 +371,12 @@
     <div class="container">
         <!-- Tab Navigation -->
         <div class="tabs">
+            <button class="tab-button active" onclick="changeTab('image')">Image</button>
+            <button class="tab-button" onclick="changeTab('message')">Message</button>
+        </div>
+        
+        <!-- Image Container -->
+        <div class="tabs">
             <button class="tab-button active" onclick="changeTab('image')">My Heart ❤</button>
             <button class="tab-button" onclick="changeTab('message')">Message for my Heart❤</button>
         </div>
@@ -400,12 +407,7 @@
         <div class="floating-music-player">
             <div class="music-player-container">
                 <div class="song-info">
-                    <div id="song-title">This song plays in my mind when I see this photo</div>
-                    <div class="time-display">
-                        <span id="current-time">0:00</span>
-                        <span>/</span>
-                        <span id="duration">0:00</span>
-                    </div>
+                    <div id="song-title">Music Player</div>
                 </div>
                 
                 <div class="progress-container" id="progress-container">
@@ -430,7 +432,7 @@
         </div>
         
         <div class="footer">
-            Created with ❤️ For My Heart
+            Created with ❤️ | April 2025
         </div>
     </div>
 
@@ -484,28 +486,32 @@
             audioPlayer.src = objectUrl;
             
             const filename = audioFile.name || "Background Music";
-            songTitle.textContent = filename.length > 25 ? 
-                filename.substring(0, 22) + '...' : filename;
+            songTitle.textContent = filename; // Display full filename
             
             // Reset play button
             playButton.innerHTML = '<i>▶</i>';
             isPlaying = false;
             
-            // Setup audio events
-            audioPlayer.addEventListener('loadedmetadata', () => {
-                const duration = formatTime(audioPlayer.duration);
-                durationDisplay.textContent = duration;
+            // Auto-play when music is loaded
+            audioPlayer.addEventListener('canplaythrough', () => {
+                // Try to autoplay
+                const playPromise = audioPlayer.play();
                 
-                // Auto-play when music is loaded
-                audioPlayer.play();
-                playButton.innerHTML = '<i>⏸</i>';
-                isPlaying = true;
-            });
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Autoplay started successfully
+                        playButton.innerHTML = '<i>⏸</i>';
+                        isPlaying = true;
+                    })
+                    .catch(error => {
+                        // Autoplay was prevented
+                        console.log("Autoplay prevented due to browser policy:", error);
+                        showNotification("Click play to start music");
+                    });
+                }
+            }, { once: true });
             
             audioPlayer.addEventListener('timeupdate', () => {
-                const currentTime = formatTime(audioPlayer.currentTime);
-                currentTimeDisplay.textContent = currentTime;
-                
                 const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
                 progressBar.style.width = `${progressPercent}%`;
             });
@@ -781,15 +787,15 @@
             // You can set a default audio file here if you want music to play on load
             // For example, if you know the URL of your audio file:
             audioPlayer.src = 'https://github.com/FORMAT-2/harshita/raw/refs/heads/main/128-Kya%20Tujhe%20Ab%20Ye%20Dil%20Bataye%20-%20Sanam%20Re%20128%20Kbps.mp3';
-            songTitle.textContent = 'This song plays in my mind when I see this photo ❤';
-
-audioPlayer.addEventListener('loadedmetadata', () => {
-    const duration = formatTime(audioPlayer.duration);
-    durationDisplay.textContent = duration;
-    audioPlayer.play();
-    playButton.innerHTML = '<i>⏸</i>';
-    isPlaying = true;
-});
+            // songTitle.textContent = 'Background Music';
+            // 
+            // audioPlayer.addEventListener('loadedmetadata', () => {
+            //     const duration = formatTime(audioPlayer.duration);
+            //     durationDisplay.textContent = duration;
+            //     audioPlayer.play();
+            //     playButton.innerHTML = '<i>⏸</i>';
+            //     isPlaying = true;
+            // });
         });
     </script>
 </body>
