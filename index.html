@@ -781,15 +781,15 @@
             // You can set a default audio file here if you want music to play on load
             // For example, if you know the URL of your audio file:
             audioPlayer.src = 'https://github.com/FORMAT-2/harshita/raw/refs/heads/main/128-Kya%20Tujhe%20Ab%20Ye%20Dil%20Bataye%20-%20Sanam%20Re%20128%20Kbps.mp3';
-            songTitle.textContent = 'Background Music';
-            // 
-            audioPlayer.addEventListener('loadedmetadata', () => {
-                const duration = formatTime(audioPlayer.duration);
-                durationDisplay.textContent = duration;
-                audioPlayer.play();
-                playButton.innerHTML = '<i>⏸</i>';
-                isPlaying = true;
-            });
+            songTitle.textContent = 'This song plays in my mind when I see this photo ❤';
+
+audioPlayer.addEventListener('loadedmetadata', () => {
+    const duration = formatTime(audioPlayer.duration);
+    durationDisplay.textContent = duration;
+    audioPlayer.play();
+    playButton.innerHTML = '<i>⏸</i>';
+    isPlaying = true;
+});
         });
     </script>
 </body>
