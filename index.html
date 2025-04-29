@@ -171,11 +171,10 @@
         #song-title {
             font-size: 14px;
             font-weight: 600;
-            color: white;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 5px;
-            padding: 0 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
         }
 
         .player-controls {
@@ -365,17 +364,34 @@
                 height: 50px;
             }
         }
+        
+        /* Play notification */
+        .play-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1001;
+            text-align: center;
+            max-width: 80%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            display: none;
+        }
+        
+        .play-notification.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Tab Navigation -->
-        <div class="tabs">
-            <button class="tab-button active" onclick="changeTab('image')">Image</button>
-            <button class="tab-button" onclick="changeTab('message')">Message</button>
-        </div>
-        
-        <!-- Image Container -->
         <div class="tabs">
             <button class="tab-button active" onclick="changeTab('image')">My Heart ❤</button>
             <button class="tab-button" onclick="changeTab('message')">Message for my Heart❤</button>
@@ -403,11 +419,22 @@
         <!-- Hidden music player that works across tabs -->
         <audio id="audio-player" loop></audio>
         
+        <!-- Play notification for autoplay restrictions -->
+        <div class="play-notification" id="play-notification">
+            <h3>Click anywhere to play music ❤</h3>
+            <p>Your browser requires user interaction to play music</p>
+        </div>
+        
         <!-- Floating music controls that appear on all tabs -->
         <div class="floating-music-player">
             <div class="music-player-container">
                 <div class="song-info">
-                    <div id="song-title">Music Player</div>
+                    <div id="song-title">This song plays in my mind when I see this photo ❤</div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span>/</span>
+                        <span id="duration">0:00</span>
+                    </div>
                 </div>
                 
                 <div class="progress-container" id="progress-container">
@@ -432,7 +459,7 @@
         </div>
         
         <div class="footer">
-            Created with ❤️ | April 2025
+            Created with ❤️ For My Heart
         </div>
     </div>
 
@@ -467,10 +494,12 @@
         const currentTimeDisplay = document.getElementById('current-time');
         const durationDisplay = document.getElementById('duration');
         const songTitle = document.getElementById('song-title');
+        const playNotification = document.getElementById('play-notification');
 
         // Default song (will be replaced when user uploads)
         let currentSong = null;
         let isPlaying = false;
+        let autoplayAttempted = false;
 
         // Create file input for music upload
         const audioInput = document.createElement('input');
@@ -486,32 +515,26 @@
             audioPlayer.src = objectUrl;
             
             const filename = audioFile.name || "Background Music";
-            songTitle.textContent = filename; // Display full filename
+            songTitle.textContent = filename.length > 25 ? 
+                filename.substring(0, 22) + '...' : filename;
             
             // Reset play button
             playButton.innerHTML = '<i>▶</i>';
             isPlaying = false;
             
-            // Auto-play when music is loaded
-            audioPlayer.addEventListener('canplaythrough', () => {
-                // Try to autoplay
-                const playPromise = audioPlayer.play();
+            // Setup audio events
+            audioPlayer.addEventListener('loadedmetadata', () => {
+                const duration = formatTime(audioPlayer.duration);
+                durationDisplay.textContent = duration;
                 
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Autoplay started successfully
-                        playButton.innerHTML = '<i>⏸</i>';
-                        isPlaying = true;
-                    })
-                    .catch(error => {
-                        // Autoplay was prevented
-                        console.log("Autoplay prevented due to browser policy:", error);
-                        showNotification("Click play to start music");
-                    });
-                }
-            }, { once: true });
+                // Auto-play when music is loaded
+                playAudio();
+            });
             
             audioPlayer.addEventListener('timeupdate', () => {
+                const currentTime = formatTime(audioPlayer.currentTime);
+                currentTimeDisplay.textContent = currentTime;
+                
                 const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
                 progressBar.style.width = `${progressPercent}%`;
             });
@@ -527,6 +550,32 @@
             
             // Show notification that music was loaded
             showNotification('Music loaded successfully!');
+        }
+
+        // Function to handle autoplay with user interaction fallback
+        function playAudio() {
+            const playPromise = audioPlayer.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Autoplay started successfully
+                    playButton.innerHTML = '<i>⏸</i>';
+                    isPlaying = true;
+                    autoplayAttempted = true;
+                    
+                    // Hide play notification if it's showing
+                    playNotification.classList.remove('show');
+                }).catch(error => {
+                    // Autoplay was prevented
+                    console.log("Autoplay prevented:", error);
+                    playButton.innerHTML = '<i>▶</i>';
+                    isPlaying = false;
+                    autoplayAttempted = true;
+                    
+                    // Show play notification
+                    playNotification.classList.add('show');
+                });
+            }
         }
 
         // Play/Pause functionality
@@ -771,9 +820,19 @@
             imageInstructions.style.color = 'rgba(255, 255, 255, 0.7)';
             
             document.querySelector('.image-container').after(imageInstructions);
-            
-            // Show initial instructions
-            // showNotification('Click 🎵 to upload background music');
+        });
+
+        // Add click event for the play notification
+        playNotification.addEventListener('click', () => {
+            playAudio();
+            playNotification.classList.remove('show');
+        });
+
+        // Add click event to the document to play audio (for mobile browsers)
+        document.addEventListener('click', () => {
+            if (autoplayAttempted && !isPlaying && audioPlayer.src) {
+                playAudio();
+            }
         });
 
         // Add page load animations and set the default audio file
@@ -784,18 +843,26 @@
                 document.body.style.opacity = '1';
             }, 100);
             
-            // You can set a default audio file here if you want music to play on load
-            // For example, if you know the URL of your audio file:
+            // Set default audio file and try to autoplay
             audioPlayer.src = 'https://github.com/FORMAT-2/harshita/raw/refs/heads/main/128-Kya%20Tujhe%20Ab%20Ye%20Dil%20Bataye%20-%20Sanam%20Re%20128%20Kbps.mp3';
-            // songTitle.textContent = 'Background Music';
-            // 
-            // audioPlayer.addEventListener('loadedmetadata', () => {
-            //     const duration = formatTime(audioPlayer.duration);
-            //     durationDisplay.textContent = duration;
-            //     audioPlayer.play();
-            //     playButton.innerHTML = '<i>⏸</i>';
-            //     isPlaying = true;
-            // });
+            songTitle.textContent = 'Kya Tujhe Ab Ye Dil Bataye - Sanam Re';
+            
+            audioPlayer.addEventListener('loadedmetadata', () => {
+                const duration = formatTime(audioPlayer.duration);
+                durationDisplay.textContent = duration;
+                
+                // Try to autoplay
+                playAudio();
+                
+                // Update progress bar while playing
+                audioPlayer.addEventListener('timeupdate', () => {
+                    const currentTime = formatTime(audioPlayer.currentTime);
+                    currentTimeDisplay.textContent = currentTime;
+                    
+                    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                });
+            });
         });
     </script>
 </body>
