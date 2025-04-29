@@ -162,19 +162,20 @@
 
         .song-info {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 10px;
             color: white;
+            width: 100%;
+            padding: 0 10px;
         }
 
         #song-title {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
+            text-align: center;
+            width: 100%;
+            padding: 5px 0;
         }
 
         .player-controls {
@@ -226,14 +227,6 @@
             border-radius: 5px;
             width: 0;
             transition: width 0.1s linear;
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 5px;
-            font-size: 14px;
         }
 
         /* Loading animation */
@@ -430,11 +423,6 @@
             <div class="music-player-container">
                 <div class="song-info">
                     <div id="song-title">This song plays in my mind when I see this photo ❤</div>
-                    <div class="time-display">
-                        <span id="current-time">0:00</span>
-                        <span>/</span>
-                        <span id="duration">0:00</span>
-                    </div>
                 </div>
                 
                 <div class="progress-container" id="progress-container">
@@ -491,8 +479,6 @@
         const uploadMusicButton = document.getElementById('upload-music-button');
         const progressBar = document.getElementById('progress-bar');
         const progressContainer = document.getElementById('progress-container');
-        const currentTimeDisplay = document.getElementById('current-time');
-        const durationDisplay = document.getElementById('duration');
         const songTitle = document.getElementById('song-title');
         const playNotification = document.getElementById('play-notification');
 
@@ -515,8 +501,7 @@
             audioPlayer.src = objectUrl;
             
             const filename = audioFile.name || "Background Music";
-            songTitle.textContent = filename.length > 25 ? 
-                filename.substring(0, 22) + '...' : filename;
+            songTitle.textContent = filename;
             
             // Reset play button
             playButton.innerHTML = '<i>▶</i>';
@@ -524,17 +509,11 @@
             
             // Setup audio events
             audioPlayer.addEventListener('loadedmetadata', () => {
-                const duration = formatTime(audioPlayer.duration);
-                durationDisplay.textContent = duration;
-                
                 // Auto-play when music is loaded
                 playAudio();
             });
             
             audioPlayer.addEventListener('timeupdate', () => {
-                const currentTime = formatTime(audioPlayer.currentTime);
-                currentTimeDisplay.textContent = currentTime;
-                
                 const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
                 progressBar.style.width = `${progressPercent}%`;
             });
@@ -606,13 +585,6 @@
             
             audioPlayer.currentTime = (clickX / width) * duration;
         });
-
-        // Format time in MM:SS
-        function formatTime(seconds) {
-            const min = Math.floor(seconds / 60);
-            const sec = Math.floor(seconds % 60);
-            return `${min}:${sec < 10 ? '0' + sec : sec}`;
-        }
 
         // Previous and Next buttons (for demonstration, they will just restart or end the song)
         prevButton.addEventListener('click', () => {
@@ -845,20 +817,14 @@
             
             // Set default audio file and try to autoplay
             audioPlayer.src = 'https://github.com/FORMAT-2/harshita/raw/refs/heads/main/128-Kya%20Tujhe%20Ab%20Ye%20Dil%20Bataye%20-%20Sanam%20Re%20128%20Kbps.mp3';
-            songTitle.textContent = 'Kya Tujhe Ab Ye Dil Bataye - Sanam Re';
+            songTitle.textContent = 'This song plays in my mind when I see this photo ❤';
             
             audioPlayer.addEventListener('loadedmetadata', () => {
-                const duration = formatTime(audioPlayer.duration);
-                durationDisplay.textContent = duration;
-                
                 // Try to autoplay
                 playAudio();
                 
                 // Update progress bar while playing
                 audioPlayer.addEventListener('timeupdate', () => {
-                    const currentTime = formatTime(audioPlayer.currentTime);
-                    currentTimeDisplay.textContent = currentTime;
-                    
                     const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
                     progressBar.style.width = `${progressPercent}%`;
                 });
