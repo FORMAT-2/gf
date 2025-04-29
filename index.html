@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Are Loved</title>
+    <title>Beautiful Message with Music</title>
     <style>
+        /* Base styles */
         * {
             margin: 0;
             padding: 0;
@@ -13,276 +14,779 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            text-align: center;
             overflow-x: hidden;
         }
         
         .container {
-            max-width: 600px;
-            width: 100%;
+            max-width: 100%;
             padding: 20px;
-        }
-        
-        h1 {
-            color: #FF6B6B;
-            margin-bottom: 20px;
-            font-size: 2.2rem;
-            animation: fadeIn 2s ease;
-        }
-        
-        .heart {
-            font-size: 60px;
-            color: #FF6B6B;
-            animation: pulse 1.5s infinite;
-            margin: 20px 0;
-        }
-        
-        .message {
-            background-color: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            animation: slideIn 1s ease;
-            line-height: 1.6;
-        }
-        
-        .message p {
-            margin-bottom: 15px;
-        }
-        
-        .affirmation-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transform: translateY(50px);
-            opacity: 0;
-            animation: floatUp 0.8s forwards;
-            animation-delay: calc(var(--i) * 0.2s);
-        }
-        
-        .affirmation-card h3 {
-            color: #FF6B6B;
-            margin-bottom: 10px;
-        }
-        
-        .butterfly {
-            position: absolute;
-            font-size: 20px;
-            animation: flyAround 20s infinite linear;
-            z-index: -1;
-            opacity: 0.7;
-        }
-        
-        .butterfly:nth-child(1) {
-            animation-duration: 25s;
-            animation-delay: 2s;
-            left: 10%;
-        }
-        
-        .butterfly:nth-child(2) {
-            animation-duration: 30s;
-            animation-delay: 5s;
-            left: 50%;
-        }
-        
-        .butterfly:nth-child(3) {
-            animation-duration: 22s;
-            animation-delay: 0s;
-            left: 80%;
-        }
-        
-        footer {
-            margin-top: 30px;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #666;
-            width: 100%;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes floatUp {
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes flyAround {
-            0% {
-                top: 100%;
-                transform: rotate(0deg);
-            }
-            25% {
-                top: 75%;
-                left: 50%;
-                transform: rotate(90deg);
-            }
-            50% {
-                top: 50%;
-                left: 20%;
-                transform: rotate(180deg);
-            }
-            75% {
-                top: 25%;
-                left: 80%;
-                transform: rotate(270deg);
-            }
-            100% {
-                top: 0%;
-                left: 10%;
-                transform: rotate(360deg);
-            }
-        }
-        
-        .breathe-button {
-            background-color: #90CDF4;
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 30px;
-            font-size: 1.1rem;
+
+        /* Image container with animation */
+        .image-container {
             margin: 20px 0;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            animation: fadeIn 1.5s ease-in-out, float 5s ease-in-out infinite;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .tab-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: glow 2s infinite alternate;
         }
-        
-        .breathe-button:hover {
-            transform: scale(1.05);
+
+        .tab-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .tab-button.active {
+            background-color: rgba(255, 255, 255, 0.4);
+            font-weight: bold;
+        }
+
+        /* Message section */
+        .message-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
         }
-        
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 5px #90CDF4;
+
+        .message-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            transform: rotate(45deg);
+            animation: shine 6s infinite linear;
+        }
+
+        .message-title {
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Music player */
+        /* Floating music player */
+        .floating-music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .floating-music-player:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .music-player-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .song-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        #song-title {
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .control-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .control-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-pause {
+            width: 60px;
+            height: 60px;
+            font-size: 18px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            width: 0;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            animation: loadingPulse 1.5s infinite ease-in-out;
+        }
+
+        .loading-dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .loading-dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
             }
-            to {
-                box-shadow: 0 0 20px #90CDF4;
+            100% {
+                opacity: 1;
             }
         }
 
-        .quote {
-            font-style: italic;
-            color: #555;
-            margin: 30px 0;
-            animation: fadeIn 3s ease;
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .image-container {
+                margin: 15px 0;
+            }
+            
+            .message-section, .music-player {
+                padding: 15px;
+            }
+            
+            .message-title {
+                font-size: 20px;
+            }
+            
+            .player-controls {
+                margin: 10px 0;
+            }
+            
+            .control-button {
+                width: 40px;
+                height: 40px;
+                margin: 0 5px;
+            }
+            
+            .play-pause {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="butterfly">🦋</div>
-    <div class="butterfly">🦋</div>
-    <div class="butterfly">🦋</div>
-    
     <div class="container">
-        <h1>You Are Stronger Than You Know</h1>
-        
-        <div class="heart">❤️</div>
-        
-        <div class="message">
-            <p>My dearest friend,</p>
-            
-            <p>I know your heart is hurting right now. Breakups leave us feeling hollow, like a piece of ourselves has been taken away. But I want you to know something important: you are complete on your own. You always have been.</p>
-            
-            <p>This pain you're feeling? It's real and valid, but it's also temporary. Each day that passes, even when it doesn't feel like it, you're healing. Your worth was never defined by this relationship, and your story doesn't end here.</p>
-            
-            <p>Take all the time you need to grieve what was lost, but please remember to be gentle with yourself through this process. You deserve kindness, especially from your own heart.</p>
-            
-            <p>I believe in your strength and resilience. When you're ready, the world is waiting for your beautiful light to shine again, brighter than before.</p>
-            
-            <p>Until then, I'm here. We all are. You are so deeply loved.</p>
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="changeTab('image')">Image</button>
+            <button class="tab-button" onclick="changeTab('message')">Message</button>
         </div>
         
-        <div class="quote">"Sometimes good things fall apart so better things can fall together." — Marilyn Monroe</div>
-        
-        <button class="breathe-button" id="breatheBtn">Take a deep breath</button>
-        
-        <div class="affirmation-card" style="--i: 1">
-            <h3>Remember</h3>
-            <p>This pain is temporary. Your strength is permanent.</p>
+        <!-- Image Container -->
+        <div id="image-tab" class="tab-content">
+            <div class="image-container">
+                <img src="/api/placeholder/1080/1829" alt="Beautiful Image" id="display-image">
+            </div>
         </div>
         
-        <div class="affirmation-card" style="--i: 2">
-            <h3>You Are Worthy</h3>
-            <p>Of love, of happiness, of peace, exactly as you are right now.</p>
+        <!-- Message Section -->
+        <div id="message-tab" class="tab-content" style="display: none;">
+            <div class="message-section">
+                <h2 class="message-title">A Beautiful Message For You</h2>
+                <p class="message-content">In the quiet moments of life, we often discover the most profound beauty. Every day brings new possibilities, new chances to find joy in the smallest things. May this melody accompany your journey and remind you that even in silence, there is music.</p>
+                <p class="message-content">Let your heart dance to the rhythm of life, and may your spirit soar with the wings of dreams. Remember that you are stronger than you know, braver than you believe, and loved more than you can imagine.</p>
+            </div>
         </div>
         
-        <div class="affirmation-card" style="--i: 3">
-            <h3>Growth</h3>
-            <p>Every ending creates space for a beautiful new beginning.</p>
+        <!-- Hidden music player that works across tabs -->
+        <audio id="audio-player" loop></audio>
+        
+        <!-- Floating music controls that appear on all tabs -->
+        <div class="floating-music-player">
+            <div class="music-player-container">
+                <div class="song-info">
+                    <div id="song-title">Music Player</div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span>/</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+                
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <div class="player-controls">
+                    <button class="control-button" id="prev-button">
+                        <i>⏮</i>
+                    </button>
+                    <button class="control-button play-pause" id="play-button">
+                        <i>▶</i>
+                    </button>
+                    <button class="control-button" id="next-button">
+                        <i>⏭</i>
+                    </button>
+                    <button class="control-button" id="upload-music-button" title="Upload Music">
+                        <i>🎵</i>
+                    </button>
+                </div>
+            </div>
         </div>
         
-        <div class="affirmation-card" style="--i: 4">
-            <h3>Your Heart</h3>
-            <p>It's okay to miss them. It's also okay to heal and move forward.</p>
-        </div>
-        
-        <div class="affirmation-card" style="--i: 5">
-            <h3>Promise</h3>
-            <p>One day you'll look back and understand how much stronger this made you.</p>
+        <div class="footer">
+            Created with ❤️ | April 2025
         </div>
     </div>
-    
-    <footer>
-        Created with love, just for you. You are never alone on this journey. ✨
-    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const breatheBtn = document.getElementById('breatheBtn');
+        // Tab switching functionality
+        function changeTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
             
-            breatheBtn.addEventListener('click', function() {
-                this.textContent = "Breathe in...";
+            tabs.forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-tab').style.display = 'block';
+            document.querySelector(`button[onclick="changeTab('${tabName}')"]`).classList.add('active');
+            
+            // Music continues playing regardless of tab switch
+        }
+
+        // Music player functionality
+        const audioPlayer = document.getElementById('audio-player');
+        const playButton = document.getElementById('play-button');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const uploadMusicButton = document.getElementById('upload-music-button');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const durationDisplay = document.getElementById('duration');
+        const songTitle = document.getElementById('song-title');
+
+        // Default song (will be replaced when user uploads)
+        let currentSong = null;
+        let isPlaying = false;
+
+        // Create file input for music upload
+        const audioInput = document.createElement('input');
+        audioInput.type = 'file';
+        audioInput.accept = 'audio/*';
+        audioInput.style.display = 'none';
+        document.body.appendChild(audioInput);
+
+        // Function to set up the audio player when a song is uploaded
+        function setupAudioPlayer(audioFile) {
+            // Create object URL for the uploaded file
+            const objectUrl = URL.createObjectURL(audioFile);
+            audioPlayer.src = objectUrl;
+            
+            const filename = audioFile.name || "Background Music";
+            songTitle.textContent = filename.length > 25 ? 
+                filename.substring(0, 22) + '...' : filename;
+            
+            // Reset play button
+            playButton.innerHTML = '<i>▶</i>';
+            isPlaying = false;
+            
+            // Setup audio events
+            audioPlayer.addEventListener('loadedmetadata', () => {
+                const duration = formatTime(audioPlayer.duration);
+                durationDisplay.textContent = duration;
                 
-                setTimeout(() => {
-                    this.textContent = "Hold...";
-                    
-                    setTimeout(() => {
-                        this.textContent = "Breathe out...";
-                        
-                        setTimeout(() => {
-                            this.textContent = "Take a deep breath";
-                        }, 4000);
-                    }, 4000);
-                }, 4000);
+                // Auto-play when music is loaded
+                audioPlayer.play();
+                playButton.innerHTML = '<i>⏸</i>';
+                isPlaying = true;
             });
             
-            // Animation for cards as they come into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
+            audioPlayer.addEventListener('timeupdate', () => {
+                const currentTime = formatTime(audioPlayer.currentTime);
+                currentTimeDisplay.textContent = currentTime;
+                
+                const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
             });
             
-            document.querySelectorAll('.affirmation-card').forEach(card => {
-                observer.observe(card);
+            audioPlayer.addEventListener('ended', () => {
+                // Since we're using loop, this may not trigger often
+                playButton.innerHTML = '<i>▶</i>';
+                isPlaying = false;
             });
+            
+            // Make the file available for future reference
+            currentSong = audioFile;
+            
+            // Show notification that music was loaded
+            showNotification('Music loaded successfully!');
+        }
+
+        // Play/Pause functionality
+        playButton.addEventListener('click', () => {
+            if (!audioPlayer.src) {
+                alert('Please upload a music file first!');
+                return;
+            }
+            
+            if (isPlaying) {
+                audioPlayer.pause();
+                playButton.innerHTML = '<i>▶</i>';
+            } else {
+                audioPlayer.play();
+                playButton.innerHTML = '<i>⏸</i>';
+            }
+            
+            isPlaying = !isPlaying;
+        });
+
+        // Progress bar click functionality
+        progressContainer.addEventListener('click', (e) => {
+            if (!audioPlayer.src) return;
+            
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+            
+            audioPlayer.currentTime = (clickX / width) * duration;
+        });
+
+        // Format time in MM:SS
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' + sec : sec}`;
+        }
+
+        // Previous and Next buttons (for demonstration, they will just restart or end the song)
+        prevButton.addEventListener('click', () => {
+            if (!audioPlayer.src) return;
+            audioPlayer.currentTime = 0;
+        });
+        
+        nextButton.addEventListener('click', () => {
+            if (!audioPlayer.src) return;
+            audioPlayer.currentTime = audioPlayer.duration;
+        });
+
+        // Handle file upload for music
+        function handleFileUpload(files) {
+            const file = files[0];
+            if (file && file.type.startsWith('audio/')) {
+                setupAudioPlayer(file);
+            } else {
+                alert('Please select a valid audio file');
+            }
+        }
+
+        // Handle image upload
+        function handleImageUpload(files) {
+            const file = files[0];
+            if (file && file.type.startsWith('image/')) {
+                const img = document.getElementById('display-image');
+                img.src = URL.createObjectURL(file);
+            } else {
+                alert('Please select a valid image file');
+            }
+        }
+
+        // Setup drag and drop for the entire document to add music
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.style.backgroundColor = 'rgba(102, 126, 234, 0.9)';
+            
+            // Show a drop indicator
+            if (!document.getElementById('drop-indicator')) {
+                const dropIndicator = document.createElement('div');
+                dropIndicator.id = 'drop-indicator';
+                dropIndicator.textContent = 'Drop your music file here';
+                dropIndicator.style.position = 'fixed';
+                dropIndicator.style.top = '50%';
+                dropIndicator.style.left = '50%';
+                dropIndicator.style.transform = 'translate(-50%, -50%)';
+                dropIndicator.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                dropIndicator.style.color = 'white';
+                dropIndicator.style.padding = '30px 50px';
+                dropIndicator.style.borderRadius = '10px';
+                dropIndicator.style.fontSize = '20px';
+                dropIndicator.style.zIndex = '9999';
+                dropIndicator.style.border = '2px dashed white';
+                document.body.appendChild(dropIndicator);
+            }
+        });
+
+        document.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.style.backgroundColor = '';
+            
+            const dropIndicator = document.getElementById('drop-indicator');
+            if (dropIndicator) {
+                document.body.removeChild(dropIndicator);
+            }
+        });
+
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.style.backgroundColor = '';
+            
+            const dropIndicator = document.getElementById('drop-indicator');
+            if (dropIndicator) {
+                document.body.removeChild(dropIndicator);
+            }
+            
+            if (e.dataTransfer.files.length) {
+                const file = e.dataTransfer.files[0];
+                if (file.type.startsWith('audio/')) {
+                    handleFileUpload(e.dataTransfer.files);
+                } else if (file.type.startsWith('image/')) {
+                    handleImageUpload(e.dataTransfer.files);
+                } else {
+                    showNotification('Please drop an audio or image file');
+                }
+            }
+        });
+
+        // Setup drag and drop for image
+        document.querySelector('.image-container').addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(255, 255, 255, 0.3)';
+        });
+
+        document.querySelector('.image-container').addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+        });
+
+        document.querySelector('.image-container').addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+            
+            if (e.dataTransfer.files.length) {
+                handleImageUpload(e.dataTransfer.files);
+            }
+        });
+
+        // Function to show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            // Style the notification
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.zIndex = '9999';
+            notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            notification.style.animation = 'fadeInDown 0.5s, fadeOut 0.5s 2.5s';
+            notification.style.animationFillMode = 'forwards';
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
+
+        // Add keyframe animations for notification
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, -20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+            
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add file input methods for both music and image
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup audio input listener
+            audioInput.addEventListener('change', (e) => {
+                if (e.target.files.length) {
+                    handleFileUpload(e.target.files);
+                }
+            });
+            
+            // Create image input
+            const imageInput = document.createElement('input');
+            imageInput.type = 'file';
+            imageInput.accept = 'image/*';
+            imageInput.style.display = 'none';
+            imageInput.addEventListener('change', (e) => {
+                if (e.target.files.length) {
+                    handleImageUpload(e.target.files);
+                }
+            });
+            
+            document.body.appendChild(imageInput);
+            
+            // Add click handlers
+            uploadMusicButton.addEventListener('click', () => {
+                audioInput.click();
+            });
+            
+            document.querySelector('.image-container').addEventListener('dblclick', () => {
+                imageInput.click();
+            });
+            
+            // Add instructions
+            const imageInstructions = document.createElement('p');
+            imageInstructions.textContent = 'Double-click or drag & drop to change image';
+            imageInstructions.style.fontSize = '12px';
+            imageInstructions.style.marginTop = '5px';
+            imageInstructions.style.color = 'rgba(255, 255, 255, 0.7)';
+            
+            document.querySelector('.image-container').after(imageInstructions);
+            
+            // Show initial instructions
+            showNotification('Click 🎵 to upload background music');
+        });
+
+        // Add page load animations and set the default audio file
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // You can set a default audio file here if you want music to play on load
+            // For example, if you know the URL of your audio file:
+            // audioPlayer.src = 'your-music-file.mp3';
+            // songTitle.textContent = 'Background Music';
+            // 
+            // audioPlayer.addEventListener('loadedmetadata', () => {
+            //     const duration = formatTime(audioPlayer.duration);
+            //     durationDisplay.textContent = duration;
+            //     audioPlayer.play();
+            //     playButton.innerHTML = '<i>⏸</i>';
+            //     isPlaying = true;
+            // });
         });
     </script>
 </body>
