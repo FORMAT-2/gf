@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Baby Girl 💖</title>
+    <title>I'm Sorry</title>
     <style>
         * {
             margin: 0;
@@ -12,309 +12,268 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #4a4a4a;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 20px;
+            animation: float 8s infinite linear;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container {
-            max-width: 614px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-        }
-
-        .floating-hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .heart {
-            position: absolute;
-            color: rgba(255, 182, 193, 0.6);
-            font-size: 20px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
-        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
-        .heart:nth-child(4) { left: 70%; animation-delay: 3s; }
-        .heart:nth-child(5) { left: 80%; animation-delay: 4s; }
-        .heart:nth-child(6) { left: 90%; animation-delay: 5s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 1; }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .title {
-            font-size: 2.2em;
-            color: #d63384;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .subtitle {
-            font-size: 1.1em;
-            color: #8e44ad;
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        .image-container {
-            width: 100%;
-            max-width: 350px;
-            margin: 30px auto;
-            background: linear-gradient(45deg, #ffeef8, #fff5f8);
-            border: 3px solid #ff69b4;
+            max-width: 380px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 17px;
-            transition: transform 0.3s ease;
-            max-height: 80vh;
-        }
-
-        .image-container:hover img {
-            transform: scale(1.02);
-        }
-
-        .image-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .image-placeholder {
-            color: #ff69b4;
-            font-size: 1.2em;
-            text-align: center;
-            padding: 20px;
-            z-index: 1;
-            position: relative;
-        }
-
-        .love-message {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px 25px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            margin: 30px 0;
-            position: relative;
-            z-index: 2;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            animation: slideIn 1s ease-out;
+            position: relative;
+            z-index: 10;
         }
 
-        .opening-line {
-            font-size: 1.3em;
-            color: #d63384;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-heart {
+            font-size: 60px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 300;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message {
+            color: #34495e;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #e74c3c;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 25px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .promise-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .promise-item {
-            margin: 15px 0;
-            padding: 12px 15px;
-            background: linear-gradient(135deg, #fff0f5, #ffe4e6);
-            border-radius: 15px;
-            border-left: 4px solid #ff69b4;
-            font-size: 1.05em;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promise-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
-        }
-
-        .promise-item::before {
-            content: '💕';
-            position: absolute;
-            left: -5px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.8em;
-        }
-
-        .closing-message {
-            text-align: center;
-            margin-top: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            color: white;
-            border-radius: 20px;
-            font-size: 1.2em;
-            box-shadow: 0 10px 25px rgba(196, 69, 105, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .closing-message::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: slide 2s ease-in-out infinite;
-        }
-
-        @keyframes slide {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
+            font-style: italic;
         }
 
         .signature {
-            text-align: center;
-            margin-top: 25px;
+            color: #7f8c8d;
+            font-size: 14px;
             font-style: italic;
-            color: #8e44ad;
-            font-size: 1.1em;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        /* Subtle pulse animation for the container */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24, #ff6b6b);
+            border-radius: 22px;
+            z-index: -1;
+            animation: pulse 3s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         /* Responsive adjustments */
         @media (max-width: 480px) {
             .container {
-                padding: 15px;
+                width: 95%;
+                padding: 30px 20px;
             }
             
-            .title {
-                font-size: 1.8em;
+            h1 {
+                font-size: 24px;
             }
             
-            .image-container {
-                max-width: 100%;
+            .message {
+                font-size: 15px;
             }
             
-            .love-message {
-                padding: 20px 18px;
-            }
-            
-            .promise-item {
-                font-size: 1em;
-                padding: 10px 12px;
+            .main-heart {
+                font-size: 50px;
             }
         }
 
-        /* Animation for page load */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
+        /* Additional decorative elements */
+        .decorative-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #e74c3c, #ff6b6b);
+            margin: 20px auto;
+            border-radius: 1px;
+            animation: expand 2s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes expand {
+            from {
+                width: 0;
+            }
+            to {
+                width: 60px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="floating-hearts">
-        <div class="heart">💖</div>
-        <div class="heart">💕</div>
-        <div class="heart">💗</div>
-        <div class="heart">💖</div>
-        <div class="heart">💕</div>
-        <div class="heart">💗</div>
-    </div>
+    <!-- Floating hearts -->
+    <div class="heart" style="left: 10%; animation-delay: 0s;">♥</div>
+    <div class="heart" style="left: 20%; animation-delay: 2s;">♥</div>
+    <div class="heart" style="left: 30%; animation-delay: 4s;">♥</div>
+    <div class="heart" style="left: 40%; animation-delay: 1s;">♥</div>
+    <div class="heart" style="left: 50%; animation-delay: 3s;">♥</div>
+    <div class="heart" style="left: 60%; animation-delay: 5s;">♥</div>
+    <div class="heart" style="left: 70%; animation-delay: 2.5s;">♥</div>
+    <div class="heart" style="left: 80%; animation-delay: 4.5s;">♥</div>
+    <div class="heart" style="left: 90%; animation-delay: 1.5s;">♥</div>
 
-    <div class="container fade-in">
-        <div class="header">
-            <h1 class="title">For My Baby Girl</h1>
-            <p class="subtitle">A promise from my heart to yours</p>
-        </div>
-
-        <div class="image-container">
-            <!-- Replace "your-image.jpg" with your actual image filename -->
-            <img src="Screenshot 2025-06-26 162724.png" alt="Our beautiful photo together" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="image-placeholder" style="display: none;">
-                📸 Your Beautiful Photo Goes Here 💕<br>
-                <small style="color: #999; font-size: 0.9em;">
-                    (Replace "your-image.jpg" in the code with your image filename)
-                </small>
-            </div>
-        </div>
-
-        <div class="love-message">
-            <p class="opening-line">Don't be afraid of anything, my baby girl.<br>I'm here for you—always.</p>
+    <div class="container">
+        <div class="main-heart">💔</div>
+        <h1>I'm Deeply Sorry</h1>
+        <div class="decorative-line"></div>
+        
+        <div class="message">
+            <p>My heart aches knowing that I've hurt you. The love I have for you is real and profound, and I'm devastated that misunderstandings and difficult situations came between us.</p>
             
-            <ul class="promise-list">
-                <li class="promise-item">Always to look after you.</li>
-                <li class="promise-item">Always to listen to you with an open heart.</li>
-                <li class="promise-item">Always to care for you, no matter the time or place.</li>
-                <li class="promise-item">Always to hold your hand through every storm.</li>
-                <li class="promise-item">Always to keep you close, especially in the hardest moments.</li>
-                <li class="promise-item">Always to love you, endlessly and unconditionally.</li>
-                <li class="promise-item">Always to make you smile, even when the world feels heavy.</li>
-                <li class="promise-item">Always to hug you, hold you, and comfort you like my precious little baby. 👶</li>
-                <li class="promise-item">Always to protect you, even in silence.</li>
-                <li class="promise-item">Always to believe in you, when you can't believe in yourself.</li>
-                <li class="promise-item">Always to be your peace, your strength, your safe place.</li>
-                <li class="promise-item">Always to stand by your side—through every tear, every triumph.</li>
-                <li class="promise-item">Always… until my very last breath.</li>
-            </ul>
+            <p>I know words can't undo the pain I've caused, but I need you to know that <span class="highlight">you mean everything to me</span>. Every moment we shared was precious, and losing you feels like losing a part of myself.</p>
+            
+            <p>I take full responsibility for my actions and the circumstances that led us here. I wish I could go back and handle things differently, with more wisdom, patience, and understanding.</p>
+            
+            <p>Please know that my love for you never wavered, even when everything else seemed to fall apart. You deserve so much better than the pain I've caused.</p>
+            
+            <p><span class="highlight">I'm truly, deeply sorry</span>, and I hope someday you can find it in your heart to forgive me.</p>
         </div>
-
-        <div class="closing-message">
-            <p>You are my sweetest dream, my forever baby girl. 💖</p>
-        </div>
-
+        
         <div class="signature">
-            <p>With all my love, always and forever ✨</p>
+            With all my love and regret,<br>
+            Forever yours in heart ♥
         </div>
     </div>
+
+    <script>
+        // Add some interactivity - hearts appear when touching the screen
+        document.addEventListener('touchstart', function(e) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '♥';
+            heart.style.position = 'fixed';
+            heart.style.left = e.touches[0].clientX + 'px';
+            heart.style.top = e.touches[0].clientY + 'px';
+            heart.style.color = '#e74c3c';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'fadeOut 2s ease-out forwards';
+            heart.style.zIndex = '1000';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 2000);
+        });
+        
+        // Add fadeOut animation for touch hearts
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.5);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
